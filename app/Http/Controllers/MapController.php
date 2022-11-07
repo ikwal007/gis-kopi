@@ -66,9 +66,11 @@ class MapController extends Controller
      * @param  \App\Models\Map  $map
      * @return \Illuminate\Http\Response
      */
-    public function edit(Map $map)
+    public function edit(Map $map, $id)
     {
-        //
+        return Inertia::render('Dashboard/Edit', [
+            'findLocation' => $map::find($id)
+        ]);
     }
 
     /**
@@ -80,7 +82,13 @@ class MapController extends Controller
      */
     public function update(Request $request, Map $map)
     {
-        //
+        $map::where('id', $request->id)->update([
+            'name' => $request->name,
+            'alamat' => $request->alamat,
+            'lat' => $request->lat,
+            'lng' => $request->lng,
+        ]);
+        return Redirect::route('dashboard.index')->with('message', 'penanda baru berhasil di ubah');
     }
 
     /**
@@ -89,8 +97,10 @@ class MapController extends Controller
      * @param  \App\Models\Map  $map
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Map $map)
+    public function destroy(Map $map, Request $request)
     {
-        //
+        $deleteLocation = $map::find($request->id);
+        $deleteLocation->delete();
+        return Redirect::route('dashboard.index')->with('message', 'penanda baru berhasil di hapus');
     }
 }

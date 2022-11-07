@@ -5,12 +5,12 @@ import Loged from "@/Layouts/Loged";
 import * as tt from "@tomtom-international/web-sdk-maps";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
 
-const Index = ({ allMarker }) => {
+const Index = ({ allMarker, centerMarker }) => {
     const mapElement = useRef();
     const keyMap = import.meta.env.VITE_TOMTOM_KEY;
     const [map, setMap] = useState({});
-    const [lng, setLng] = useState(95.329896);
-    const [lat, setLat] = useState(5.528602);
+    const [lng, setLng] = useState(centerMarker.lng);
+    const [lat, setLat] = useState(centerMarker.lat);
 
     useEffect(() => {
         let map = tt.map({
@@ -21,7 +21,7 @@ const Index = ({ allMarker }) => {
                 trafficFlow: true,
             },
             center: [lng, lat],
-            zoom: 14,
+            zoom: 17,
         });
         map.addControl(new tt.FullscreenControl());
         map.addControl(new tt.NavigationControl());
@@ -30,10 +30,10 @@ const Index = ({ allMarker }) => {
         const addMarker = () => {
             const popup = new tt.Popup({
                 closeButton: false,
-            }).setText("212 kopi");
+            }).setText("oke");
 
             const marker = new tt.Marker({
-                draggable: true,
+                draggable: false,
             })
                 .setLngLat([lng, lat])
                 .setPopup(popup)
@@ -69,6 +69,7 @@ const Index = ({ allMarker }) => {
         return () => map.remove();
     }, [lng, lat]);
 
+    console.log(centerMarker);
     return (
         <Loged>
             <div className="flex flex-col bg-base-content max-w-full mx-12 my-16 p-6 space-y-6 rounded-lg">

@@ -16,7 +16,8 @@ class MapAdminController extends Controller
     public function index()
     {
         return Inertia::render('Mapadmin/Index',[
-            'allMarker' => Map::all()
+            'allMarker' => Map::all(),
+            'centerMarker' => Map::inRandomOrder()->first()
         ]);
     }
 

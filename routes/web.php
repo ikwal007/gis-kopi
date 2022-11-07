@@ -28,7 +28,9 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('dashboard', MapController::class);
+    Route::resource('dashboard', MapController::class)->parameters([
+        'dashboard' => 'id'
+    ]);
     Route::resource('map', MapAdminController::class);
 });
 

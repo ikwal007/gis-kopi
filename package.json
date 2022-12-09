@@ -23,6 +23,7 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
+        "@rive-app/react-canvas": "^3.0.33",
         "@tomtom-international/web-sdk-maps": "^6.20.0",
         "daisyui": "^2.33.0",
         "formik": "^2.2.9",

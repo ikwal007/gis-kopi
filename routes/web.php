@@ -1,10 +1,9 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\MapAdminController;
 use App\Http\Controllers\MapController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +16,9 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::resource('/', LandingController::class)->only([
+    'index'
+]);
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

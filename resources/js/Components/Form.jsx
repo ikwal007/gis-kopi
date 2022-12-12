@@ -43,7 +43,7 @@ const Form = () => {
     return (
         <>
             <button
-                className="btn btn-outline btn-primary"
+                className="btn btn-ghost text-white bg-[#BA68C8] hover:bg-[#bf7cca]"
                 onClick={() => setShow(!show)}
             >
                 {show ? "Tutup" : "Tambah lokasi baru"}
@@ -51,7 +51,7 @@ const Form = () => {
             {show ? (
                 <form
                     onSubmit={formik.handleSubmit}
-                    className="flex flex-wrap bg-primary rounded-xl p-6 space-y-6 max-w-max"
+                    className="flex flex-wrap bg-secondary rounded-xl p-6 space-y-6 max-w-max"
                 >
                     <div className="flex w-full space-x-12">
                         <div className="form-control w-full max-w-md">

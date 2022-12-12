@@ -29,6 +29,7 @@
         "formik": "^2.2.9",
         "google-map-react": "^2.2.0",
         "react-icons": "^4.6.0",
+        "react-typing-effect": "^2.0.5",
         "yup": "^0.32.11"
     }
 }
